@@ -357,7 +357,7 @@ void GameController::single_step_next_frame() {
 
 bool GameController::single_step_is_over()
 {
-	return frame <= 5400;
+	return frame > 5400;
 }
 
 bool GameController::single_step_cast_ub(int position) {
