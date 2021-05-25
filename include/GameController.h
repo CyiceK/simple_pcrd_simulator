@@ -53,4 +53,7 @@ struct GameController {
 
 	bool single_step_is_over();
 
+	int get_damage() { return logger.total_dmg; }
 };
+
+GameController* game();

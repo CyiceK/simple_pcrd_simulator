@@ -384,3 +384,36 @@ bool GameController::single_step_cast_ub(int position) {
 	}
 }
 
+#define UB_Time(Name, Time) {Name().unit_id, Time}
+GameController* game() {
+	GameController *gc = new GameController();
+	gc->logger.init();
+	gc->ublist = {
+			UB_Time(Shiori, 683),
+			UB_Time(Jita, 904),
+			UB_Time(Makoto, 1237),
+			UB_Time(Shiori, 1426),
+			UB_Time(Eriko, 1665),
+			UB_Time(Jita, 1671),
+			UB_Time(Kanna, 1672),
+			UB_Time(Shiori, 2257),
+			UB_Time(Makoto, 2303),
+			UB_Time(Jita, 2597),
+			UB_Time(Eriko, 2812),
+			UB_Time(Kanna, 3063),
+			UB_Time(Shiori, 3282),
+			UB_Time(Makoto, 3357),
+			UB_Time(Jita, 3548),
+			UB_Time(Eriko, 4014),
+			UB_Time(Kanna, 4291),
+			UB_Time(Shiori, 4292),
+			UB_Time(Makoto, 4404),
+			UB_Time(Jita, 4475),
+			UB_Time(Eriko, 5017),
+			UB_Time(Shiori, 5327),
+			UB_Time(Jita, 5382)
+	};
+	gc->global_controller();
+	return gc;
+}
+

@@ -11,3 +11,4 @@ include_directories(${PYTHON_INCLUDE_DIRS})
 
 add_subdirectory(src)
 add_subdirectory(test)
+add_subdirectory(pywrapper)
