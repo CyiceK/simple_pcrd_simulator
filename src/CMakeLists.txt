@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.1)
+project(Simple_PCRD_Sim)
+file(GLOB_RECURSE SimHeader ${CMAKE_CURRENT_SOURCE_DIR}/*.h)
+file(GLOB_RECURSE SimSource ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
+add_library(${PROJECT_NAME} STATIC ${SimHeader} ${SimSource})

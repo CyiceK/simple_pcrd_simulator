@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.1)
+project(Simple_PCRD_Sim_Test)
+file(GLOB_RECURSE SimSource ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
+add_executable(${PROJECT_NAME} ${SimSource})
+target_link_libraries(${PROJECT_NAME} Simple_PCRD_Sim)
