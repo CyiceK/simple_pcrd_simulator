@@ -23,7 +23,7 @@ struct GameController {
 	bool get_critical(double critical_rate, int from_level, int to_level);
 	bool get_cast_ub(int unit_id, int frame);
 
-	std::vector<Unit*> __get_friends();
+	std::vector<Unit*> get_friends();
 	std::vector<Unit*> get_front_enemy(Unit* unit, int num_target);
 	std::vector<Unit*> get_all_friend(Unit* unit);
 

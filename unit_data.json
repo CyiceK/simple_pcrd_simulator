@@ -16,7 +16,21 @@
     "start_frame": 246,
     "action_full_frame": [ 69, 121, 75 ],
     "action_wait_frame": [ 128, 68, 114 ],
-    "ub_freeze_frame": 64
+    "ub_freeze_frame": 64,
+    "action_id_map": {
+      "0": {
+        "29": 0 
+      },
+      "1": {
+        "1": 11,
+        "33": 12
+      },
+      "2": {
+        "49": 21
+      },
+      "ub_detail": [1,2],
+      "action_detail": {
+      }
   },
   "102701": {
     "unit_name": "惠理子",

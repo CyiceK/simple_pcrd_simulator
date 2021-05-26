@@ -33,6 +33,8 @@ struct Unit {
 	int tpup;
 	int tpdown;
 
+	double collision_radius = 112;
+
 	struct Resistance {
 		double toxin_resist = 0;
 		double curse_resist = 0;

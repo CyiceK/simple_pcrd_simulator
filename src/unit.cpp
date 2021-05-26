@@ -246,6 +246,7 @@ std::vector<int> Makoto::get_action_id(int skillid, int frame) {
 	// 11 是1技能动作1 
 	// 21 是2技能动作1， 22是2技能动作2
 	// 依此类推
+	
 	if (skillid == 0) {
 		if (frame == 29) return { 0 };
 	}

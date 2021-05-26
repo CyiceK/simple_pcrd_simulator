@@ -15,9 +15,23 @@ enum ActionType {
 
 struct ActionDetail {
 	int n_target;
+	double range;
+
 	std::vector<double> parameters;
 	std::vector<int> parameters_int;
 	ActionType type;
+	
+	enum TargetType {
+		target_enemy,
+		target_friend,
+	};
+	enum SearchType {
+		search_nearest,
+		search_range
+	};
+
+	int TargetType;
+	
 };
 
 #define CRITICAL_1ST 1

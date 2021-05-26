@@ -63,7 +63,7 @@ bool GameController::get_cast_ub(int unit_id, int frame) {
 	return false;
 }
 
-vector<Unit*> GameController::__get_friends() {
+vector<Unit*> GameController::get_friends() {
 	vector<Unit*> ret;
 	for (int i = 0; i <= 4; ++i) {
 		if (!units_view[i]->dead) ret.push_back(units_view[i]);
@@ -96,7 +96,7 @@ vector<Unit*> GameController::get_front_enemy(Unit *unit, int num_target) {
 
 vector<Unit*> GameController::get_all_friend(Unit * unit) {
 	if (unit->side == 0) {
-		return __get_friends();
+		return get_friends();
 	}
 	else {
 		return { units_view.back() };
@@ -196,7 +196,7 @@ void GameController::action_handler(Unit *unit, int action) {
 		break;
 
 	case ATK_Buff:
-		friends = __get_friends();
+		friends = get_friends();
 		value = ceil_int(ad.parameters[0] + ad.parameters[1] * ad.parameters_int[0]);
 		duration = ad.parameters[2];
 		buff = atk_buff(value, duration);
@@ -207,7 +207,7 @@ void GameController::action_handler(Unit *unit, int action) {
 		break;
 
 	case Speed_Buff:
-		friends = __get_friends();
+		friends = get_friends();
 		value_float = ad.parameters[0];
 		duration = ad.parameters[1];
 		buff = speed_buff(value_float, duration);
@@ -226,7 +226,7 @@ void GameController::action_handler(Unit *unit, int action) {
 		break;
 
 	case TP_Restore:
-		friends = __get_friends();
+		friends = get_friends();
 		value_float = ceill(ad.parameters[0] + ad.parameters[1] * ad.parameters_int[0]);
 		for (auto friendunit : friends) {
 			actualTPgain = value_float * friendunit->get_tp_up_coef();
@@ -349,15 +349,15 @@ void GameController::single_step_initiator() {
 }
 
 void GameController::single_step_next_frame() {
-	frame++;
 	calculate_toxin_buff();
 	calculate_action();
 	auto_cast_ub();
+	frame++;
 }
 
 bool GameController::single_step_is_over()
 {
-	return frame > 5400;
+	return frame >= 5400;
 }
 
 bool GameController::single_step_cast_ub(int position) {
