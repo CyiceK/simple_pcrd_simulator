@@ -360,6 +360,16 @@ bool GameController::single_step_is_over()
 	return frame >= 5400;
 }
 
+bool GameController::single_step_has_ub(int position) {
+	if (position >= 0 && position <= 4) {
+		Unit* unit = position_map[position];
+		return unit->TP >= 1000.0;			
+	}
+	else {
+		throw runtime_error("Bad position input.");
+	}
+}
+
 bool GameController::single_step_cast_ub(int position) {
 	
 	if (position >= 0 && position <= 4) {

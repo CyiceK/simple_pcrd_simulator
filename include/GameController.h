@@ -30,7 +30,7 @@ struct GameController {
 	void multipart_damage(Unit* from, Unit* to, int raw_damage, int part, std::vector<double> portion, int always_critical);
 	void simple_damage(Unit* from, Unit* to, int raw_damage);
 	void damage_dealer(Unit* from, Unit* to, ActionDetail &ad);
-	void buff_gain(Unit* unit, Unit buff);
+	// void buff_gain(Unit* unit, Unit buff);
 	void toxin(Unit* from, Unit* to, int raw_damage, double time);
 	void action_handler(Unit* unit, int action);
 
@@ -39,13 +39,14 @@ struct GameController {
 	void calculate_action();
 
 	void calculate_toxin_buff();
-	void try_cast_ub();
+	// void try_cast_ub();
 	void auto_cast_ub();
 	void cast_ub_from_ublist();
 	void global_controller();
 	
 	void single_step_initiator();
 
+	bool single_step_has_ub(int position);
 	// 返回true则成功施放
 	// 返回false则施放失败
 	bool single_step_cast_ub(int position);

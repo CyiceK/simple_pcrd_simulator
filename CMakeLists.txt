@@ -5,7 +5,6 @@ include_directories(${PROJECT_SOURCE_DIR}/pybind11
                     ${PROJECT_SOURCE_DIR}
                     )
 
-find_package(PythonInterp 3)
 find_package(PythonLibs 3)
 include_directories(${PYTHON_INCLUDE_DIRS})
 
