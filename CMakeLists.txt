@@ -5,7 +5,7 @@ include_directories(${PROJECT_SOURCE_DIR}/pybind11
                     ${PROJECT_SOURCE_DIR}
                     )
 
-find_package(PythonLibs 3)
+find_package(PythonLibs 3.6)
 include_directories(${PYTHON_INCLUDE_DIRS})
 
 add_subdirectory(src)

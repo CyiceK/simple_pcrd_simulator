@@ -370,6 +370,22 @@ bool GameController::single_step_has_ub(int position) {
 	}
 }
 
+int GameController::get_current_tp(int position) {
+	if (position >= 0 && position <= 4) {
+		Unit* unit = position_map[position];
+		return unit->TP;
+	}
+	else {
+		throw runtime_error("Bad position input.");
+	}
+}
+
+int GameController::get_boss_def() {
+	Unit* unit = position_map[-1];
+	return unit->get_def();
+}
+
+
 bool GameController::single_step_cast_ub(int position) {
 	
 	if (position >= 0 && position <= 4) {

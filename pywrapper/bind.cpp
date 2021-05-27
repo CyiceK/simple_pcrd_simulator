@@ -18,6 +18,8 @@ PYBIND11_MODULE(pcrdsim_pylib, m) {
 		.def("global_controller", &GameController::global_controller)
 		.def("single_step_initiator", &GameController::single_step_initiator)
 		.def("single_step_has_ub", &GameController::single_step_has_ub)
+		.def("get_current_tp", &GameController::get_current_tp)
+		.def("get_boss_def", &GameController::get_boss_def)
 		.def("single_step_cast_ub", &GameController::single_step_cast_ub)
 		.def("single_step_next_frame", &GameController::single_step_next_frame)
 		.def("single_step_is_over", &GameController::single_step_is_over)
