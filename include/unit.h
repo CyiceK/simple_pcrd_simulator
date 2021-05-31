@@ -67,7 +67,7 @@ struct Unit {
 	int ub_freeze_frame_counter = 0;
 	int ub_freeze_frame;
 
-	int action_counter = 0;
+	int action_frame_counter = 0;
 	int action_frame;
 	std::vector<int> action_full_frame;
 	std::vector<int> action_wait_frame;

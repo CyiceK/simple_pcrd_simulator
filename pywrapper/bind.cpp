@@ -8,14 +8,36 @@ namespace py = pybind11;
 PYBIND11_MODULE(pcrdsim_pylib, m) {
 	m.doc() = "Simulator for Princess Connect Re:Dive.";
 
+	py::class_<Buff>(m, "Buff")
+		.def_readonly("active", &Buff::active)
+		.def_readonly("value_float", &Buff::value_float)
+		.def_readonly("value", &Buff::value)
+		.def_readonly("max_frame", &Buff::max_frame)
+		.def_readonly("frame_counter", &Buff::frame_counter)
+		;
+
 	py::class_<Unit>(m, "Unit")
 		.def_readonly("HP", &Unit::HP)
 		.def_readonly("maxHP", &Unit::maxHP)
 		.def_readonly("TP", &Unit::TP)
+		.def_readonly("status", &Unit::status)
+		.def_readonly("action_frame_counter", &Unit::action_frame_counter)
+		.def_readonly("wait_frame_counter", &Unit::wait_frame_counter)
+		
+		.def("get_atk", &Unit::get_atk)
+		.def("get_def", &Unit::get_def)
+		.def("get_critical", &Unit::get_critical)
+		.def("speed_buff", &Unit::speed_buff)
+		.def_readonly("atk_buffs", &Unit::atk_buffs)
+		.def_readonly("def_buffs", &Unit::def_buffs)
+		.def_readonly("critical_buffs", &Unit::critical_buffs)
 		;
 
 	py::class_<BattleLogger>(m, "BattleLogger")
 		.def_readonly("total_dmg", &BattleLogger::total_dmg)
+		.def_readonly("avg_dmg", &BattleLogger::avg_dmg)
+		.def_readonly("dmglist", &BattleLogger::dmglist)
+		.def_readonly("avgdmglist", &BattleLogger::avgdmglist)
 		;
 
 	py::class_<GameController>(m, "GameController")
