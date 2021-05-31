@@ -7,7 +7,9 @@ struct Unit;
 
 struct BattleLogger {
 	int total_dmg = 0;
+	int avg_dmg = 0;
 	std::map<int, int> dmglist;
+	std::map<int, int> avgdmglist;
 	virtual void init();
 	virtual bool character_filter(Unit* unit);
 	virtual void record_damage(Unit* from, Unit* to, int damage, int frame, bool critical);

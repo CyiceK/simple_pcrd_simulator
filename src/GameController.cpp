@@ -344,6 +344,16 @@ void GameController::global_controller() {
 	}
 }
 
+std::vector<double> GameController::get_team_tp() {
+	std::vector<double> tps;
+	tps.push_back(position_map[0]->TP);
+	tps.push_back(position_map[1]->TP);
+	tps.push_back(position_map[2]->TP);
+	tps.push_back(position_map[3]->TP);
+	tps.push_back(position_map[4]->TP);
+	return tps;
+}
+
 void GameController::single_step_initiator() {
 	frame = 0;
 }
