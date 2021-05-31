@@ -20,7 +20,7 @@ struct GameController {
 	~GameController();
 
 	double rng();
-	bool get_critical(double critical_rate, int from_level, int to_level);
+	bool get_critical(double critical_rate);
 	bool get_cast_ub(int unit_id, int frame);
 
 	std::vector<Unit*> get_friends();

@@ -6,7 +6,13 @@
 #include <time.h>
 using namespace std;
 
-int main1() {
+#define ShowDamage(CharacterName) \
+	printf("%s\t:%d \t(蓝字%d)\n", \
+	CharacterName().unit_name.c_str(), \
+	logger.dmglist[CharacterName().unit_id], \
+	logger.avgdmglist[CharacterName().unit_id])
+
+int main() {
 	clock_t first, second;
 	first = clock();
 	int avg = 0;
@@ -14,14 +20,16 @@ int main1() {
 	GameController* gm = game();
 	BattleLogger& logger = gm->logger;
 	int dmg = logger.total_dmg;
-	printf("seed = %7d 总伤害为%d\n", gm->seed, dmg);
+	int avg_dmg = logger.avg_dmg;
+	printf("seed = %7d\n总伤害为%d  (蓝字%d)\n", gm->seed, dmg, avg_dmg);
 	avg += dmg;
 
-	cout << "真琴" << ":" << logger.dmglist[Makoto().unit_id] << endl;
-	cout << "病娇" << ":" << logger.dmglist[Eriko().unit_id] << endl;
-	cout << "吉他" << ":" << logger.dmglist[Jita().unit_id] << endl;
-	cout << "环奈" << ":" << logger.dmglist[Kanna().unit_id] << endl;
-	cout << "栞栞" << ":" << logger.dmglist[Shiori().unit_id] << endl;
+	ShowDamage(Makoto);
+	ShowDamage(Eriko);
+	ShowDamage(Jita);
+	ShowDamage(Kanna);
+	ShowDamage(Shiori);
+
 	delete gm;
 
 	second = clock();
@@ -30,7 +38,7 @@ int main1() {
 	return 0;
 }
 
-int main() {
+int main1() {
 	clock_t first, second;
 	first = clock();
 	int repeat = 30;

@@ -85,6 +85,7 @@ struct Unit {
 
 	void all_buffs_to_next_frame() {
 		for (auto& bf : atk_buffs) bf.to_next_frame();
+		for (auto& bf : critical_buffs) bf.to_next_frame();
 		for (auto& bf : def_buffs) bf.to_next_frame();
 		for (auto& bf : tp_buffs) bf.to_next_frame();
 		speed_buff.to_next_frame();
