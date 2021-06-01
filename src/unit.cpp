@@ -201,7 +201,7 @@ std::vector<int> Unit::to_next_frame() {
 			gc->logger.record_action_start(this, gc->frame, get_current_skill());
 			status = 1;
 			wait_frame = get_next_wait_frame();
-			action_counter = 0;
+			action_frame_counter = 0;
 			int currenct_skill = get_current_skill();
 			action_frame = action_full_frame[currenct_skill];
 			new_movement_tp_obtain();
@@ -209,9 +209,9 @@ std::vector<int> Unit::to_next_frame() {
 		return {};
 	}
 	if (status == 1) {
-		action_counter++;
-		auto actions = get_action_id(get_current_skill(), action_counter);
-		if (action_counter >= action_frame) {
+		action_frame_counter++;
+		auto actions = get_action_id(get_current_skill(), action_frame_counter);
+		if (action_frame_counter >= action_frame) {
 			gc->logger.record_action_end(this, gc->frame, get_current_skill());
 			status = 0;
 			wait_frame_counter = 0;

@@ -16,7 +16,7 @@ bool BattleLogger::character_filter(Unit * unit) {
 	return false;
 }
 
-void BattleLogger::record_damage, (Unit * from, Unit * to, int damage, int frame, bool critical) {
+void BattleLogger::record_damage(Unit * from, Unit * to, int damage, int frame, bool critical) {
 	if (to->side == 1) {
 		total_dmg += damage;
 		if (dmglist.find(from->unit_id) == dmglist.end()) {

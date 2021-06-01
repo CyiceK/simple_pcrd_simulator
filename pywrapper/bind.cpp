@@ -27,7 +27,7 @@ PYBIND11_MODULE(pcrdsim_pylib, m) {
 		.def("get_atk", &Unit::get_atk)
 		.def("get_def", &Unit::get_def)
 		.def("get_critical", &Unit::get_critical)
-		.def("speed_buff", &Unit::speed_buff)
+		.def_readonly("speed_buff", &Unit::speed_buff)
 		.def_readonly("atk_buffs", &Unit::atk_buffs)
 		.def_readonly("def_buffs", &Unit::def_buffs)
 		.def_readonly("critical_buffs", &Unit::critical_buffs)
