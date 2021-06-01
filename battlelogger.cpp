@@ -16,7 +16,7 @@ bool BattleLogger::character_filter(Unit * unit) {
 	return false;
 }
 
-void BattleLogger::record_damage, (Unit * from, Unit * to, int damage, int frame, bool critical) {
+void BattleLogger::record_damage(Unit * from, Unit * to, int damage, int frame, bool critical) {
 	if (to->side == 1) {
 		total_dmg += damage;
 		if (dmglist.find(from->unit_id) == dmglist.end()) {
@@ -31,51 +31,51 @@ void BattleLogger::record_damage, (Unit * from, Unit * to, int damage, int frame
 		&& !character_filter(to)
 	) return;
 
-	printf("%4dÖ¡ %s¶Ô%sÔì³ÉÁË%dÉËº¦ %s\n",
-		frame, from->unit_name.c_str(), to->unit_name.c_str(), damage, critical ? "(±©»÷)" : "");
+	printf("%4då¸§ %så¯¹%sé€ æˆäº†%dä¼¤å®³ %s\n",
+		frame, from->unit_name.c_str(), to->unit_name.c_str(), damage, critical ? "(æš´å‡»)" : "");
 }
 
 void BattleLogger::record_atk_buff(Unit *from, Unit *to, int buffvalue, int frame)
 {
 	if (!character_filter(from)) return;
-	printf("%4dÖ¡ %s¶Ô%sÔö¼ÓÁË%d ATK buff\n",
+	printf("%4då¸§ %så¯¹%så¢åŠ äº†%d ATK buff\n",
 		frame, from->unit_name.c_str(), to->unit_name.c_str(), buffvalue);
 }
 
 void BattleLogger::record_speed_buff(Unit *from, Unit *to, double buffvalue, int frame)
 {
 	if (!character_filter(from)) return;
-	printf("%4dÖ¡ %s¶Ô%sÔö¼ÓÁË%lfËÙ¶Èbuff\n",
+	printf("%4då¸§ %så¯¹%så¢åŠ äº†%lfé€Ÿåº¦buff\n",
 		frame, from->unit_name.c_str(), to->unit_name.c_str(), buffvalue);
 }
 
 void BattleLogger::record_tp_gain(Unit * from, Unit * to, double value, double current_value, int frame)
 {
 	if (!character_filter(to)) return;
-	printf("%4dÖ¡ %s¶Ô%sÔö¼ÓÁË%lf TP£¨ÏÖÖµ£º%lf£©\n",
+	printf("%4då¸§ %så¯¹%så¢åŠ äº†%lf TPï¼ˆç°å€¼ï¼š%lfï¼‰\n",
 		frame, from->unit_name.c_str(), to->unit_name.c_str(), value, current_value);
 }
 
 void BattleLogger::record_def_buff(Unit * from, Unit * to, int value, int frame)
 {
 	if (!character_filter(from)) return;
-	printf("%4dÖ¡ %s¶Ô%sÔö¼ÓÁË%d ·ÀÓù\n",
+	printf("%4då¸§ %så¯¹%så¢åŠ äº†%d é˜²å¾¡\n",
 		frame, from->unit_name.c_str(), to->unit_name.c_str(), value);
 }
 
 void BattleLogger::record_ub_cast(Unit * unit, int frame)
 {
 	if (!character_filter(unit)) return;
-	printf("%4dÖ¡ %sÊ©·ÅÁËUB\n", frame, unit->unit_name.c_str());
+	printf("%4då¸§ %sæ–½æ”¾äº†UB\n", frame, unit->unit_name.c_str());
 }
 
 void BattleLogger::record_action_start(Unit * unit, int frame, int skill)
 {
 	if (!character_filter(unit)) return;
 	if (skill > 0)
-		printf("%4dÖ¡ %s¿ªÊ¼Ê©·Å%d¼¼ÄÜ\n", frame, unit->unit_name.c_str(), skill);
+		printf("%4då¸§ %så¼€å§‹æ–½æ”¾%dæŠ€èƒ½\n", frame, unit->unit_name.c_str(), skill);
 	else if (skill == 0)
-		printf("%4dÖ¡ %s¿ªÊ¼Ê©·ÅÆÕ¹¥\n", frame, unit->unit_name.c_str());
+		printf("%4då¸§ %så¼€å§‹æ–½æ”¾æ™®æ”»\n", frame, unit->unit_name.c_str());
 	else throw runtime_error("error branch.");
 }
 
@@ -83,9 +83,9 @@ void BattleLogger::record_action_end(Unit * unit, int frame, int skill)
 {
 	if (!character_filter(unit)) return;
 	if (skill > 0)
-		printf("%4dÖ¡ %s½áÊø%d¼¼ÄÜ\n", frame, unit->unit_name.c_str(), skill);
+		printf("%4då¸§ %sç»“æŸ%dæŠ€èƒ½\n", frame, unit->unit_name.c_str(), skill);
 	else if (skill == 0)
-		printf("%4dÖ¡ %s½áÊøÆÕ¹¥\n", frame, unit->unit_name.c_str());
+		printf("%4då¸§ %sç»“æŸæ™®æ”»\n", frame, unit->unit_name.c_str());
 	else throw runtime_error("error branch.");
 }
 
@@ -105,7 +105,7 @@ void BattleLogger::record_toxin_damage(Unit * from, Unit *to, int damage, int fr
 		&& !character_filter(to)
 		) return;
 
-	printf("%4dÖ¡ %s¶Ô%sÔì³ÉÁË%dÉËº¦\n",
+	printf("%4då¸§ %så¯¹%sé€ æˆäº†%dä¼¤å®³\n",
 		frame, from->unit_name.c_str(), to->unit_name.c_str(), damage);
 
 }
@@ -113,13 +113,13 @@ void BattleLogger::record_toxin_damage(Unit * from, Unit *to, int damage, int fr
 void BattleLogger::record_toxin_success(Unit * from, Unit * to, int damage, double time, int frame)
 {
 	if (!character_filter(from)) return;
-	printf("%4dÖ¡ %s¶Ô%s³É¹¦Ê©·Å¶¾×´Ì¬(%dÉËº¦, %lfÃë)\n", 
+	printf("%4då¸§ %så¯¹%sæˆåŠŸæ–½æ”¾æ¯’çŠ¶æ€(%dä¼¤å®³, %lfç§’)\n", 
 		frame, from->unit_name.c_str(), to->unit_name.c_str(), damage, time);
 }
 
 void BattleLogger::record_toxin_fail(Unit * from, Unit * to, int frame)
 {
 	if (!character_filter(from)) return;
-	printf("%4dÖ¡ %s¶Ô%sÊ©·ÅµÄ¶¾×´Ì¬±»µÖ¿¹\n",
+	printf("%4då¸§ %så¯¹%sæ–½æ”¾çš„æ¯’çŠ¶æ€è¢«æŠµæŠ—\n",
 		frame, from->unit_name.c_str(), to->unit_name.c_str());
 }
