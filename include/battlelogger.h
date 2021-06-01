@@ -7,10 +7,12 @@ struct Unit;
 
 struct BattleLogger {
 	int total_dmg = 0;
+	int avg_dmg = 0;
 	std::map<int, int> dmglist;
+	std::map<int, int> avgdmglist;
 	virtual void init();
 	virtual bool character_filter(Unit* unit);
-	virtual void record_damage(Unit* from, Unit* to, int damage, int frame, bool critical);
+	virtual void record_damage(Unit* from, Unit* to, int damage, int frame, bool critical, double critical_rate);
 	virtual void record_atk_buff(Unit* from, Unit* to, int buffvalue, int frame);
 	virtual void record_speed_buff(Unit* from, Unit* to, double buffvalue, int frame);
 	virtual void record_tp_gain(Unit* from, Unit* to, double value, double current_value, int frame);

@@ -20,7 +20,7 @@ struct GameController {
 	~GameController();
 
 	double rng();
-	bool get_critical(double critical_rate, int from_level, int to_level);
+	bool get_critical(double critical_rate);
 	bool get_cast_ub(int unit_id, int frame);
 
 	std::vector<Unit*> get_friends();
@@ -43,9 +43,10 @@ struct GameController {
 	void auto_cast_ub();
 	void cast_ub_from_ublist();
 	void global_controller();
+
+	std::vector<double> get_team_tp();
 	
 	void single_step_initiator();
-
 	bool single_step_has_ub(int position);
 	// 返回true则成功施放
 	// 返回false则施放失败

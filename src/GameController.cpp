@@ -41,7 +41,7 @@ double GameController::rng() {
 	return ud(*reng);
 }
 
-bool GameController::get_critical(double critical_rate, int from_level, int to_level)
+bool GameController::get_critical(double critical_rate)
 {
 	bool is_critical = false;
 	if (critical_rate >= 1) {
@@ -112,27 +112,27 @@ void GameController::multipart_damage(Unit *from, Unit *to, int raw_damage, int 
 			dmg *= 2;
 			to->receive_damage(dmg);
 			from->deal_damage(dmg, to->level);
-			logger.record_damage(from, to, dmg, frame, true);
+			logger.record_damage(from, to, dmg, frame, true, 1.0);
 		}
 		else {
-			bool is_critical = get_critical(critical_rate, from->level, to->level);
+			bool is_critical = get_critical(critical_rate);
 			if (is_critical) dmg *= 2;
 			to->receive_damage(dmg);
 			from->deal_damage(dmg, to->level);
-			logger.record_damage(from, to, dmg, frame, is_critical);
+			logger.record_damage(from, to, dmg, frame, is_critical, critical_rate);
 		}
 	}
 }
 
 void GameController::simple_damage(Unit* from, Unit* to, int raw_damage) {
 	double critical_rate = from->get_critical_rate(to);
-	bool is_critical = get_critical(critical_rate, from->level, to->level);
+	bool is_critical = get_critical(critical_rate);
 	int reduced_damage = int(raw_damage * to->get_def_coef());
 	if (is_critical) reduced_damage *= 2;
 
 	to->receive_damage(reduced_damage);
 	from->deal_damage(reduced_damage, to->level);
-	logger.record_damage(from, to, reduced_damage, frame, is_critical);
+	logger.record_damage(from, to, reduced_damage, frame, is_critical, critical_rate);
 }
 
 void GameController::damage_dealer(Unit *from, Unit *to, ActionDetail &ad) {
@@ -342,6 +342,16 @@ void GameController::global_controller() {
 		auto_cast_ub();
 		cast_ub_from_ublist();
 	}
+}
+
+std::vector<double> GameController::get_team_tp() {
+	std::vector<double> tps;
+	tps.push_back(position_map[0]->TP);
+	tps.push_back(position_map[1]->TP);
+	tps.push_back(position_map[2]->TP);
+	tps.push_back(position_map[3]->TP);
+	tps.push_back(position_map[4]->TP);
+	return tps;
 }
 
 void GameController::single_step_initiator() {
